@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage("build prerequisities") {
+            parallel {
+                stage("build backend") {
+                    steps {
+                        build job: "backend"
+                    }
+                }
+                stage("build frontend") {
+                    steps {
+                        build job: "frontend"
+                    }
+                }
+            }
+        }
+
+        stage("run acceptance tests") {
+            steps {
+                echo "simulated run of acceptance tests"
+            }
+        }
+    }
+}

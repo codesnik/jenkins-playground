@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build backend') {
+            steps {
+
+                // echo "simulate delay"
+                // sh "sleep 10"
+
+                // echo "simulate breackage"
+                // sh "exit 1"
+
+                echo "backend has been built succesfully"
+            }
+        }
+    }
+}
