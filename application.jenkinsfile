@@ -5,12 +5,12 @@ pipeline {
             parallel {
                 stage("build backend") {
                     steps {
-                        build job: "backend"
+                        build job: "backend/master"
                     }
                 }
                 stage("build frontend") {
                     steps {
-                        build job: "frontend"
+                        build job: "frontend/master"
                     }
                 }
             }
