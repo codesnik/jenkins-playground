@@ -1,15 +1,21 @@
 pipeline {
     agent any
+    environment {
+       FRONTEND_VERSION = sh(script: 'frontend/version.sh', returnStdout: true).trim()
+       BACKEND_VERSION = sh(script: 'backend/version.sh', returnStdout: true).trim()
+    }
     stages {
         stage("build prerequisities") {
             parallel {
                 stage("build backend") {
                     steps {
+                        echo "should pass version ${BACKEND_VERSION} to the build job"
                         build job: "backend/master"
                     }
                 }
                 stage("build frontend") {
                     steps {
+                        echo "should pass version ${FRONTEND_VERSION} to the build job"
                         build job: "frontend/master"
                     }
                 }
